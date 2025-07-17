@@ -1,2 +1,2 @@
 # BlockChain-WebChat
-Code developed to practive concepts of BlockChain and Web working together. The code include the function of criptying the messages
+Code developed to practice concepts of Blockchain and Web with encrypted messages
