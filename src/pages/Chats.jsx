@@ -3,6 +3,11 @@ import enterIcon from "../assets/enter-icon.png"
 import searchIcon from "../assets/search.png"
 import { useState, useRef, useEffect } from "react"
 import { Message } from "../components/Message"
+import Web3 from "web3"
+
+// Configuração do Web3
+const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
+
 
 export default function Chats() {
 	const [mensagens, setMensagens] = useState([
@@ -22,7 +27,18 @@ export default function Chats() {
 	console.log(mensagens)
 	const [novaMensagem, setNovaMensagem] = useState("")
 	const fimDasMensagensRef = useRef(null)
+	const [contatos, setContatos] = useState([])
 
+						useEffect(() => {async function fetchContatos() {
+									try {
+										const contas = await web3.eth.getAccounts()
+										setContatos(contas)
+									} catch (err) {
+										setContatos([])
+									}
+								}
+								fetchContatos()
+						}, [])
 	const enviarMensagem = () => {
 		if (novaMensagem.trim() === "") return
 
@@ -49,7 +65,15 @@ export default function Chats() {
 				<div className="containerContacts flex flex-col gap-y-5 w-1/4 h-full">
 					<div className="contacts h-2/3 bg-[#FFF7D4] rounded-2xl shadow-2x relative">
 						<p className={titlesStyle}>Contacts</p>
+						
 
+						<div className="contacts-list p-3 h-5/6 overflow-scroll mt-[40px]">
+							{contatos.slice(1).map((conta, idx) => (
+								<div key={conta} className="p-2 border-b border-amber-200 text-xs break-all">
+									{conta}
+								</div>
+							))}
+						</div>
 						<div className="contacts-list p-3 h-5/6 overflow-scroll mt-[40px]"></div>
 					</div>
 					<div className="newContact h-1/3 bg-[#FFF7D4] rounded-2xl shadow-2xl flex flex-col items-center gap-y-2 relative">
