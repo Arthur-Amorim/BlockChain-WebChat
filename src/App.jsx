@@ -3,8 +3,8 @@ import { Link } from "react-router"
 
 function App() {
 	return (
-		<div className="pt-30 bg-[url(./assets/chain-wallpaper.png)] flex flex-col items-center text-center h-full text-[#4C3D3D]">
-			<div className="bg-[#FFF7D4] w-2/3 mt-30 shadow-2xl flex flex-col px-5 items-center gap-y-3 rounded-2xl py-15">
+		<div className="bg-[url(./assets/chain-wallpaper.png)] flex flex-col items-center h-full text-center justify-center text-[#4C3D3D] overflow-hidden">
+			<div className="bg-[#FFF7D4] w-2/3 shadow-2xl flex flex-col px-5 items-center gap-y-3 rounded-2xl py-15">
 				<h1 className="text-5xl font-semibold mb-3">
 					BlockChain Talking
 				</h1>
